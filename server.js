@@ -1,6 +1,9 @@
 const express = require('express')
 const app = express()
 const PORT = 8000
+const cors = require('cors')
+
+app.use(cors())
 
 const blueChipAPI = {
 
@@ -22,10 +25,15 @@ const blueChipAPI = {
 
 }
 
+app.get('/api'),(request,response)=>{
+    response.json(blueChipAPI)
+}
+
+
 app.get('/', (request, response)=>{
     response.sendFile(__dirname + '/index.html')
 })
 
-app.listen(PORT,()=>{
+app.listen(process.env.PORT||PORT,()=>{
     console.log('Node running')
 })
