@@ -25,14 +25,16 @@ const blueChipAPI = {
 
 }
 
-app.get('/api'),(request,response)=>{
-    response.json(blueChipAPI)
-}
 
 
 app.get('/', (request, response)=>{
     response.sendFile(__dirname + '/index.html')
 })
+
+app.get('/api',(request,response)=>{
+    response.json(blueChipAPI)
+})
+
 
 app.listen(process.env.PORT||PORT,()=>{
     console.log('Node running')
