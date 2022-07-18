@@ -10,22 +10,22 @@ const blueChipAPI = {
     'microsoft':{
         'Ticker':'MSFT',
         'Value': 252.3,
-        'Market Cap': '1.89 Trillion'
+        'marketCap': '1.89 Trillion'
     },
     'apple':{
         'Ticker':'AAPL',
         'Value':146.33,
-        'Market Cap': '2.37 Trillion'
+        'marketCap': '2.37 Trillion'
     },
     'amazon':{
         'Ticker':'AMZN',
         'Value':111.14,
-        'Market Cap': '1.89 Trillion'
+        'marketCap': '1.89 Trillion'
     },
     'unknown':{
         'Ticker':'Null',
         'Value':'Null',
-        'Market Cap': 'Null'
+        'marketCap': 'Null'
     }
 
 }
