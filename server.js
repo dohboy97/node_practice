@@ -5,7 +5,7 @@ const cors = require('cors')
 
 app.use(cors())
 
-const blueChipAPI = {
+let blueChipAPI = {
 
     'microsoft':{
         'Ticker':'MSFT',
@@ -41,8 +41,15 @@ app.get('/api/:blueChipName',(request,response)=>{
     if(blueChipAPI[blueChipName]){
     response.json(blueChipAPI[blueChipName])
     }else{
-        response.status(404).end()
+        response.json(blueChipAPI['unknown'])
     }
+})
+
+app.delete('/api/:blueChipName',(request,response)=>{
+    const blueChipName = request.params.blueChipName.toLowerCase()
+    delete blueChipAPI[blueChipName]
+
+    response.status(204).end()
 })
 
 
