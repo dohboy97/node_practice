@@ -2,6 +2,7 @@ const express = require('express')
 const app = express()
 const PORT = 8000
 const cors = require('cors')
+app.use(express.json())
 
 app.use(cors())
 
@@ -51,6 +52,14 @@ app.delete('/api/:blueChipName',(request,response)=>{
 
     response.status(204).end()
 })
+
+
+app.post('/api/blueChipAPI',(request, response)=>{
+    const blueChipName = request.body
+    console.log(blueChipName)
+    response.json(blueChipName)
+})
+
 
 
 app.listen(process.env.PORT||PORT,()=>{
