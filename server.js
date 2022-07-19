@@ -41,7 +41,7 @@ app.get('/api/:blueChipName',(request,response)=>{
     if(blueChipAPI[blueChipName]){
     response.json(blueChipAPI[blueChipName])
     }else{
-        response.json(blueChipAPI['unknown'])
+        response.status(404).end()
     }
 })
 
