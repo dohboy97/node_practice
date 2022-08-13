@@ -3,33 +3,19 @@ const app = express()
 const PORT = 8000
 const cors = require('cors')
 app.use(express.json())
-
+require('dotenv').config()
 app.use(cors())
 
-let blueChipAPI = {
+let dbConnectionStr = process.env.DB_STRING
 
-    'microsoft':{
-        'Ticker':'MSFT',
-        'Value': 252.3,
-        'marketCap': '1.89 Trillion'
-    },
-    'apple':{
-        'Ticker':'AAPL',
-        'Value':146.33,
-        'marketCap': '2.37 Trillion'
-    },
-    'amazon':{
-        'Ticker':'AMZN',
-        'Value':111.14,
-        'marketCap': '1.89 Trillion'
-    },
-    'unknown':{
-        'Ticker':'Null',
-        'Value':'Null',
-        'marketCap': 'Null'
-    }
+const MongoClient = require('mongodb').MongoClient
 
-}
+MongoClient.connect(dbConnectionStr, {useUnifiedTopology:true})
+.then(client => {
+    console.log('Connected to the Blue Chip API database.')
+    const db = client.db('blue_chip_api')
+})
+
 
 
 
@@ -63,5 +49,5 @@ app.post('/api/blueChipAPI',(request, response)=>{
 
 
 app.listen(process.env.PORT||PORT,()=>{
-    console.log('Node running')
+    console.log('Node running on Heroku')
 })
