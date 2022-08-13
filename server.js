@@ -27,14 +27,17 @@ MongoClient.connect(dbConnectionStr, {useUnifiedTopology:true})
         })
     })
     
-    // app.get('/api/:blueChipName',(request,response)=>{
-    //     const blueChipName = request.params.blueChipName.toLowerCase()
-    //     if(blueChipAPI[blueChipName]){
-    //     response.json(blueChipAPI[blueChipName])
-    //     }else{
-    //         response.json(blueChipAPI['unknown'])
-    //     }
-    // })
+    app.post('/stocks',(req,res)=>{
+        blueChipCollection.insertOne(req.body)
+        .then(result=>{
+            res.redirect('/')
+            console.log(result)
+        })
+        .catch(err=>{
+            console.log(err)
+        })
+    })
+    
     
     // app.delete('/api/:blueChipName',(request,response)=>{
     //     const blueChipName = request.params.blueChipName.toLowerCase()
@@ -44,11 +47,7 @@ MongoClient.connect(dbConnectionStr, {useUnifiedTopology:true})
     // })
     
     
-    // app.post('/api/blueChipAPI',(request, response)=>{
-    //     const blueChipName = request.body
-    //     console.log(blueChipName)
-    //     response.json(blueChipName)
-    // })
+   
     
     
     
