@@ -3,6 +3,7 @@ const app = express()
 const PORT = 8000
 const cors = require('cors')
 app.use(express.json())
+const bodyParser =require('body-parser')
 require('dotenv').config()
 app.use(cors())
 
@@ -15,7 +16,10 @@ MongoClient.connect(dbConnectionStr, {useUnifiedTopology:true})
     console.log('Connected to the Blue Chip API database.')
     const db = client.db('blue_chip_api')
     const blueChipCollection = db.collection('blue-chips')
-
+    app.set('view engine', 'ejs')
+    app.use(bodyParser.urlencoded({extended:true}))
+    app.use(bodyParser.json())
+    app.use(express.static('public'))
     app.get('/', (req, res)=>{
         db.collection('blue-chips').find().toArray()
         .then(results=>{
