@@ -13,17 +13,17 @@ const MongoClient = require('mongodb').MongoClient
 
 MongoClient.connect(dbConnectionStr, {useUnifiedTopology:true})
 .then(client => {
-    console.log('Connected to the Blue Chip API database.')
+    
     const db = client.db('blue_chip_api')
     const blueChipCollection = db.collection('blue-chips')
     app.set('view engine', 'ejs')
     app.use(bodyParser.urlencoded({extended:true}))
     app.use(bodyParser.json())
-    app.use(express.static('public'))
+    app.use(express.static(__dirname + '/public'))
     app.get('/', (req, res)=>{
         db.collection('blue-chips').find().toArray()
         .then(results=>{
-            console.log('success')
+            
             res.render('index.ejs',{ stocks : results})
         })
         .catch(err =>{
@@ -42,13 +42,6 @@ MongoClient.connect(dbConnectionStr, {useUnifiedTopology:true})
         })
     })
     
-    
-    // app.delete('/api/:blueChipName',(request,response)=>{
-    //     const blueChipName = request.params.blueChipName.toLowerCase()
-    //     delete blueChipAPI[blueChipName]
-    
-    //     response.status(204).end()
-    // })
     
     
    

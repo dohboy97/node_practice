@@ -5,6 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://kit.fontawesome.com/d0e2e32f6e.js" crossorigin="anonymous"></script>
+    <link href = 'style.css' rel = 'stylesheet' type = 'text/css'>
     <title>Document</title>
 </head>
 <body>
@@ -24,12 +25,12 @@
     <ul class="stocks">
         <% for(let i = 0; i < stocks.length; i++) {%>
             <li class = "stock">
-                <span><%= stocks[i].name %></span>:
-                <span><%= stocks[i].ticker %></span>
-                <span><%= stocks[i].mktcap %></span>:
-                <span><%= stocks[i].price %></span>
-                <span><i class="fa-solid fa-binoculars"></i></span>
-                <span><i class="fa fa-trash"></i></span>
+                <div>Name: <span><%= stocks[i].name %></span></div>
+                <div>Ticker: <span><%= stocks[i].ticker %></span></div>
+                <div>Market Cap: <span><%= stocks[i].mktcap %></span></div>
+                <div>Price<span><%= stocks[i].price %></span></div>
+                <div>Added to Watchlist: <span><i class="fa-solid fa-binoculars"></i></span></div>
+                <div>Delete: <span><i class="fa fa-trash"></i></span></div>
             </li>
             <% } %>
       </ul>
