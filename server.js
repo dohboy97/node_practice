@@ -42,7 +42,20 @@ MongoClient.connect(dbConnectionStr, {useUnifiedTopology:true})
         })
     })
     
-    
+    app.put('/stocks',(req,res)=>{
+        blueChipCollection.findOneAndUpdate(
+            { name: req.body.name},{
+                $set:{
+                    counter:req.body.counter +1
+                }
+            }, {
+                sort: {_id: -1},
+                upsert:true
+            }, (err, result) => {
+                res.send(result)
+            }
+        )
+    })
     
    
     
