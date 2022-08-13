@@ -4,16 +4,35 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/d0e2e32f6e.js" crossorigin="anonymous"></script>
     <title>Document</title>
 </head>
 <body>
-    <h1>Blue Chip Practice Node Module</h1>
-    <h2>Enter the company name of a blue chip stock to find more information</h2>
-    <input type = 'text' placeholder="Company Name">
-    <button>Get information</button>
-    <h3 id ='ticker'>Ticker:</h3>
-    <h3 id = 'mktCap'>Market Cap:</h3>
-    <h3 id= 'price'>Stock Price:</h3>
+    <h1>Stock Entry Tracker</h1>
+    <form action = "/stocks" method ="POST">
+        <input type = 'text' placeholder ='name' name = 'name'>
+        <input type = 'text' placeholder ='ticker' name = 'ticker'>
+        <input type = 'text' placeholder ='market cap' name = 'mktcap'>
+        <input type = 'text' placeholder ='price' name = 'price'>
+        <button type = 'submit'>Submit</button>
+    </form>
+
+    
+
+    <h2>Quotes</h2>
+
+    <ul class="stocks">
+        <% for(let i = 0; i < stocks.length; i++) {%>
+            <li class = "stock">
+                <span><%= stocks[i].name %></span>:
+                <span><%= stocks[i].ticker %></span>
+                <span><%= stocks[i].mktcap %></span>:
+                <span><%= stocks[i].price %></span>
+                <span><i class="fa-solid fa-binoculars"></i></span>
+                <span><i class="fa fa-trash"></i></span>
+            </li>
+            <% } %>
+      </ul>
 
     <script src = 'js/main.js'></script>
 </body>

@@ -14,11 +14,12 @@ MongoClient.connect(dbConnectionStr, {useUnifiedTopology:true})
 .then(client => {
     console.log('Connected to the Blue Chip API database.')
     const db = client.db('blue_chip_api')
-    const blueChipCollection = db.collection(blue-chips)
+    const blueChipCollection = db.collection('blue-chips')
 
     app.get('/', (req, res)=>{
         db.collection('blue-chips').find().toArray()
         .then(results=>{
+            console.log('success')
             res.render('index.ejs',{ stocks : results})
         })
         .catch(err =>{
@@ -26,28 +27,28 @@ MongoClient.connect(dbConnectionStr, {useUnifiedTopology:true})
         })
     })
     
-    app.get('/api/:blueChipName',(request,response)=>{
-        const blueChipName = request.params.blueChipName.toLowerCase()
-        if(blueChipAPI[blueChipName]){
-        response.json(blueChipAPI[blueChipName])
-        }else{
-            response.json(blueChipAPI['unknown'])
-        }
-    })
+    // app.get('/api/:blueChipName',(request,response)=>{
+    //     const blueChipName = request.params.blueChipName.toLowerCase()
+    //     if(blueChipAPI[blueChipName]){
+    //     response.json(blueChipAPI[blueChipName])
+    //     }else{
+    //         response.json(blueChipAPI['unknown'])
+    //     }
+    // })
     
-    app.delete('/api/:blueChipName',(request,response)=>{
-        const blueChipName = request.params.blueChipName.toLowerCase()
-        delete blueChipAPI[blueChipName]
+    // app.delete('/api/:blueChipName',(request,response)=>{
+    //     const blueChipName = request.params.blueChipName.toLowerCase()
+    //     delete blueChipAPI[blueChipName]
     
-        response.status(204).end()
-    })
+    //     response.status(204).end()
+    // })
     
     
-    app.post('/api/blueChipAPI',(request, response)=>{
-        const blueChipName = request.body
-        console.log(blueChipName)
-        response.json(blueChipName)
-    })
+    // app.post('/api/blueChipAPI',(request, response)=>{
+    //     const blueChipName = request.body
+    //     console.log(blueChipName)
+    //     response.json(blueChipName)
+    // })
     
     
     
