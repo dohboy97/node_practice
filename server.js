@@ -57,7 +57,15 @@ MongoClient.connect(dbConnectionStr, {useUnifiedTopology:true})
         )
     })
     
-   
+   app.delete('/stocks',(req,res)=>{
+       blueChipCollection.findOneAndDelete({
+        name: req.body.name, ticker: req.body.ticker, mktcap: req.body.mktcap, price: req.body.price
+       }, (err, result) => {
+           if(err) return res.send(500, err)
+           res.send('message deleted!')
+       }
+       )
+   })
     
     
     
