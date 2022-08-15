@@ -71,15 +71,9 @@ Array.from(trash).forEach(function(element) {
         
       })
     })
-    .then(response => {
-      if (response.ok) return response.json()
+    .then(function(response) {
+     window.location.reload()
     })
-    .then(data => {
-      console.log(data)
-       window.location.reload(true)
-    })
-    .catch(err =>{
-      console.log(err)
-    })
+   
   });
 });
