@@ -17,7 +17,7 @@ Array.from(update).forEach(function(element) {
 
       const counter = parseFloat(this.parentNode.parentNode.parentNode.childNodes[9].innerText)
       
-      console.log(counter)
+      console.log(name)
 
       fetch('stocks', {
         method: 'put',
